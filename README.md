@@ -7,3 +7,5 @@ use variable.l variable.y
 lexar는 앞으로 딱히 고칠게 없는 것 같으나 variable에서 + - * / unary operation을 구현했어요
 
 앞으로 할 거 여기다가 commit을 하죠 :)
+yacc 깔려면 sudo apt install bison
+lexar 깔려면 sudo apt install flex
