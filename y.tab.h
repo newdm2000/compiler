@@ -51,13 +51,17 @@ extern int yydebug;
   {
     NAME = 258,
     NUMBER = 259,
-    UMINUS = 260
+    GE = 260,
+    LE = 261,
+    UMINUS = 262
   };
 #endif
 /* Tokens.  */
 #define NAME 258
 #define NUMBER 259
-#define UMINUS 260
+#define GE 260
+#define LE 261
+#define UMINUS 262
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -69,7 +73,7 @@ union YYSTYPE
                 int vblno;
         
 
-#line 73 "y.tab.h"
+#line 77 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
