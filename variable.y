@@ -15,9 +15,10 @@ double vbltable[26];  /* double형의 기억장소 배열 */
 %token    <vblno> NAME
 %token    <dval> NUMBER
 %left     '>' '<'
-%left GE LE //EQ NE  
+%left GE LE EQ NE  
 %left '-' '+'
 %left '*' '/'
+%left EXP LOG
 %nonassoc UMINUS
 %type <dval> expression
 %%
@@ -46,10 +47,15 @@ expression: expression '+' expression  { $$ = $1 + $3;  }
 	   | expression '<' expression { $$ = $1 < $3;  }
 	   | expression GE  expression { $$ = $1 >= $3; }
 	   | expression LE  expression { $$ = $1 <= $3; }
-	  /* | expression NE  expression { $$ = $1 NE $3; }
-	   | expression EQ  expression { $$ = $1 EQ $3; }
-*/		     
-           ;
+	   | expression NE  expression { $$ = $1 != $3; }
+	   | expression EQ  expression { $$ = $1 == $3; }
+	   | expression EXP expression { $$ = pow($1, $3);}		     
+	   | LOG expression {  if ($2==0.0) {
+					yyerror("argument zero");
+					return -1; }
+			       else
+			 	$$ = log($2);}           
+;
 %%
 int main()
 {
