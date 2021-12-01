@@ -12,14 +12,14 @@ extern double vbltable[26];
                 }
 
 [\t ]+   ;        /* ignore white space */
-[a-z]    {      yylval.vblno = yytext[0] - 'a'; return NAME; }
+[a-z]+    {      yylval.vblno = yytext[0] - 'a'; return NAME; }
 "$"      { return 0; }    /*  end of input  */
 ">="	return GE;
 "<=" 	return LE;
 "=="    return EQ;
 "!="    return NE;
-"exp"   return EXP;
-"log"   return LOG;
+"EXP"   return EXP;
+"LOG"   return LOG;
 \n       |
 .                return yytext[0];
 %%
