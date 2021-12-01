@@ -1367,7 +1367,7 @@ yyreduce:
 
   case 5:
 #line 29 "variable.y"
-                                         { printf("= %g\n",(yyvsp[0].dval)); }
+                                                  { printf("= %g\n",(yyvsp[0].dval)); }
 #line 1372 "y.tab.c"
     break;
 
@@ -1379,7 +1379,7 @@ yyreduce:
 
   case 7:
 #line 32 "variable.y"
-                                       { (yyval.dval) = (yyvsp[-2].dval) * (yyvsp[0].dval);  }
+                                                 { (yyval.dval) = (yyvsp[-2].dval) * (yyvsp[0].dval);  }
 #line 1384 "y.tab.c"
     break;
 
