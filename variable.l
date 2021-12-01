@@ -16,6 +16,10 @@ extern double vbltable[26];
 "$"      { return 0; }    /*  end of input  */
 ">="	return GE;
 "<=" 	return LE;
+"=="    return EQ;
+"!="    return NE;
+"exp"   return EXP;
+"log"   return LOG;
 \n       |
 .                return yytext[0];
 %%

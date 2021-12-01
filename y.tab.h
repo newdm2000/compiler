@@ -53,7 +53,11 @@ extern int yydebug;
     NUMBER = 259,
     GE = 260,
     LE = 261,
-    UMINUS = 262
+    EQ = 262,
+    NE = 263,
+    EXP = 264,
+    LOG = 265,
+    UMINUS = 266
   };
 #endif
 /* Tokens.  */
@@ -61,7 +65,11 @@ extern int yydebug;
 #define NUMBER 259
 #define GE 260
 #define LE 261
-#define UMINUS 262
+#define EQ 262
+#define NE 263
+#define EXP 264
+#define LOG 265
+#define UMINUS 266
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -73,7 +81,7 @@ union YYSTYPE
                 int vblno;
         
 
-#line 77 "y.tab.h"
+#line 85 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
