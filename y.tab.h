@@ -51,25 +51,31 @@ extern int yydebug;
   {
     NAME = 258,
     NUMBER = 259,
-    GE = 260,
-    LE = 261,
-    EQ = 262,
-    NE = 263,
-    EXP = 264,
-    LOG = 265,
-    UMINUS = 266
+    LEFT = 260,
+    RIGHT = 261,
+    GE = 262,
+    LE = 263,
+    EQ = 264,
+    NE = 265,
+    EXP = 266,
+    LOG = 267,
+    UMINUS = 268,
+    UPLUS = 269
   };
 #endif
 /* Tokens.  */
 #define NAME 258
 #define NUMBER 259
-#define GE 260
-#define LE 261
-#define EQ 262
-#define NE 263
-#define EXP 264
-#define LOG 265
-#define UMINUS 266
+#define LEFT 260
+#define RIGHT 261
+#define GE 262
+#define LE 263
+#define EQ 264
+#define NE 265
+#define EXP 266
+#define LOG 267
+#define UMINUS 268
+#define UPLUS 269
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -81,7 +87,7 @@ union YYSTYPE
                 int vblno;
         
 
-#line 85 "y.tab.h"
+#line 91 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
