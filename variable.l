@@ -1,3 +1,4 @@
+
 %{
 #include "y.tab.h"
 #include <math.h>
@@ -12,14 +13,18 @@ extern double vbltable[26];
                 }
 
 [\t ]+   ;        /* ignore white space */
-[a-z]+    {      yylval.vblno = yytext[0] - 'a'; return NAME; }
+
+[A-Za-z][A-Za-z0-9]+    {      yylval.vblno = yytext[0] - 'a'; return NAME; }
+
 "$"      { return 0; }    /*  end of input  */
 ">="	return GE;
 "<=" 	return LE;
 "=="    return EQ;
 "!="    return NE;
-"EXP"   return EXP;
-"LOG"   return LOG;
+
+"^"   return EXP;
+"&"   return LOG;
+
 \n       |
 .                return yytext[0];
 %%
@@ -27,3 +32,6 @@ extern double vbltable[26];
 int yywrap(void) {
 	return 1;
 }
+
+
+

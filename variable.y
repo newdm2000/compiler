@@ -23,13 +23,13 @@ double vbltable[26];  /* double형의 기억장소 배열 */
 %type <dval> expression
 %%
 statement_list: statement '\n'
-          |         statement_list statement '\n'
+	                |         statement_list statement '\n'
           ;
 statement:        NAME '=' expression  { vbltable[$1] = $3; }
-          |   expression                 { printf("= %g\n",$1); }
+	           |   expression                 { printf("= %g\n",$1); }
           ;
 expression: expression '+' expression  { $$ = $1 + $3;  }
-          | expression '*' expression  { $$ = $1 * $3;  }
+	            | expression '*' expression  { $$ = $1 * $3;  }
           | expression '-' expression  { $$ = $1 - $3;  }
         //  | expression '*' expression  { $$ = $1 * $3;  }
           | expression '/' expression
