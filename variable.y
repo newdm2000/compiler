@@ -39,7 +39,7 @@ expression: expression '+' expression  { $$ = $1 + $3;  }
                     {  if($3 == 0.0){
                              yyerror("divide by zero");
 			     return -1;
-			}
+
                        else   $$ = $1 /$3;
                     }
            |  '-'expression  %prec UMINUS   { $$ = -$2; }

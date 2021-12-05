@@ -13,16 +13,21 @@ extern double vbltable[26];
                 }
 
 [\t ]+   ;        /* ignore white space */
+
 [A-Za-z][A-Za-z0-9]+    {      yylval.vblno = yytext[0] - 'a'; return NAME; }
+
 "$"      { return 0; }    /*  end of input  */
 ">="	return GE;
 "<=" 	return LE;
 "=="    return EQ;
 "!="    return NE;
+
 "^"   return EXP;
 "&"   return LOG;
+
 "("   return LEFT;
 ")"   return RIGHT;
+
 \n       |
 .                return yytext[0];
 %%
