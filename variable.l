@@ -21,6 +21,8 @@ extern double vbltable[26];
 "!="    return NE;
 "^"   return EXP;
 "&"   return LOG;
+"("   return LEFT;
+")"   return RIGHT;
 \n       |
 .                return yytext[0];
 %%
