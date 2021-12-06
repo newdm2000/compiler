@@ -16,16 +16,21 @@ extern struct symtab *symlook(char *);
                 }
 
 [\t ]+   ;        /* ignore white space */
+
 [A-Za-z][A-Za-z0-9]*    {      yylval.symp=symlook(yytext); return NAME; }
+
 "$"      { return 0; }    /*  end of input  */
 ">="	return GE;
 "<=" 	return LE;
 "=="    return EQ;
 "!="    return NE;
+
 "^"   return EXP;
 "&"   return LOG;
+
 "("   return LEFT;
 ")"   return RIGHT;
+
 \n       |
 .                return yytext[0];
 %%
