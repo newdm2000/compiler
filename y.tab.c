@@ -72,12 +72,14 @@
 void yyerror(const char* msg) {
 	fprintf(stderr, "%s\n", msg);
 }
+#include "symbol.h"
 #include <math.h>
-int yylex();
-//void yyerror(const char *s);
-double vbltable[26];  /* double형의 기억장소 배열 */
 
-#line 81 "y.tab.c"
+int yylex();
+void yyerror(const char *s);
+//double vbltable[26];  /* double형의 기억장소 배열 */
+
+#line 83 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -157,13 +159,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "variable.y"
+#line 13 "variable.y"
 
                 double dval;
-                int vblno;
+                struct symtab *symp;
         
 
-#line 167 "y.tab.c"
+#line 169 "y.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -539,9 +541,9 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    28,    30,    31,    33,    36,    37,    38,
-      45,    46,    47,    48,    50,    53,    54,    55,    56,    57,
-      58,    59,    60,    61,    62
+       0,    29,    29,    30,    32,    33,    36,    39,    40,    41,
+      49,    50,    51,    52,    54,    57,    58,    59,    60,    61,
+      62,    63,    64,    65,    66
 };
 #endif
 
@@ -1362,136 +1364,137 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 30 "variable.y"
-                                       { vbltable[(yyvsp[-2].vblno)] = (yyvsp[0].dval); }
-#line 1368 "y.tab.c"
+#line 32 "variable.y"
+                                       { (yyvsp[-2].symp)->value = (yyvsp[0].dval); }
+#line 1370 "y.tab.c"
     break;
 
   case 5:
-#line 31 "variable.y"
+#line 33 "variable.y"
                                                   { printf("= %g\n",(yyvsp[0].dval)); }
-#line 1374 "y.tab.c"
+#line 1376 "y.tab.c"
     break;
 
   case 6:
-#line 33 "variable.y"
+#line 36 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) + (yyvsp[0].dval);  }
-#line 1380 "y.tab.c"
+#line 1382 "y.tab.c"
     break;
 
   case 7:
-#line 36 "variable.y"
+#line 39 "variable.y"
                                                  { (yyval.dval) = (yyvsp[-2].dval) * (yyvsp[0].dval);  }
-#line 1386 "y.tab.c"
+#line 1388 "y.tab.c"
     break;
 
   case 8:
-#line 37 "variable.y"
+#line 40 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) - (yyvsp[0].dval);  }
-#line 1392 "y.tab.c"
+#line 1394 "y.tab.c"
     break;
 
   case 9:
-#line 39 "variable.y"
+#line 42 "variable.y"
                     {  if((yyvsp[0].dval) == 0.0){
                              yyerror("divide by zero");
 			     return -1;
 			}
+
                        else   (yyval.dval) = (yyvsp[-2].dval) /(yyvsp[0].dval);
                     }
-#line 1403 "y.tab.c"
+#line 1406 "y.tab.c"
     break;
 
   case 10:
-#line 45 "variable.y"
+#line 49 "variable.y"
                                             { (yyval.dval) = -(yyvsp[0].dval); }
-#line 1409 "y.tab.c"
+#line 1412 "y.tab.c"
     break;
 
   case 11:
-#line 46 "variable.y"
+#line 50 "variable.y"
                                           {(yyval.dval)=(yyvsp[0].dval);}
-#line 1415 "y.tab.c"
+#line 1418 "y.tab.c"
     break;
 
   case 12:
-#line 47 "variable.y"
+#line 51 "variable.y"
                                     { (yyval.dval)=(yyvsp[-1].dval);}
-#line 1421 "y.tab.c"
+#line 1424 "y.tab.c"
     break;
 
   case 13:
-#line 48 "variable.y"
+#line 52 "variable.y"
                                 { yyerrok; yyerror("parenthesis matching error"); (yyval.dval)=(yyvsp[0].dval); }
-#line 1427 "y.tab.c"
+#line 1430 "y.tab.c"
     break;
 
   case 14:
-#line 50 "variable.y"
+#line 54 "variable.y"
                                {yyerrok; yyerror("parenthesis matching error"); (yyval.dval)=(yyvsp[-1].dval);}
-#line 1433 "y.tab.c"
+#line 1436 "y.tab.c"
     break;
 
   case 16:
-#line 54 "variable.y"
-                              { (yyval.dval) = vbltable[(yyvsp[0].vblno)]; }
-#line 1439 "y.tab.c"
+#line 58 "variable.y"
+                              { (yyval.dval) = (yyvsp[0].symp)->value; }
+#line 1442 "y.tab.c"
     break;
 
   case 17:
-#line 55 "variable.y"
+#line 59 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) > (yyvsp[0].dval);  }
-#line 1445 "y.tab.c"
+#line 1448 "y.tab.c"
     break;
 
   case 18:
-#line 56 "variable.y"
+#line 60 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) < (yyvsp[0].dval);  }
-#line 1451 "y.tab.c"
+#line 1454 "y.tab.c"
     break;
 
   case 19:
-#line 57 "variable.y"
+#line 61 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) >= (yyvsp[0].dval); }
-#line 1457 "y.tab.c"
+#line 1460 "y.tab.c"
     break;
 
   case 20:
-#line 58 "variable.y"
+#line 62 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) <= (yyvsp[0].dval); }
-#line 1463 "y.tab.c"
+#line 1466 "y.tab.c"
     break;
 
   case 21:
-#line 59 "variable.y"
+#line 63 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) != (yyvsp[0].dval); }
-#line 1469 "y.tab.c"
+#line 1472 "y.tab.c"
     break;
 
   case 22:
-#line 60 "variable.y"
+#line 64 "variable.y"
                                        { (yyval.dval) = (yyvsp[-2].dval) == (yyvsp[0].dval); }
-#line 1475 "y.tab.c"
+#line 1478 "y.tab.c"
     break;
 
   case 23:
-#line 61 "variable.y"
+#line 65 "variable.y"
                                        { (yyval.dval) = pow((yyvsp[-2].dval), (yyvsp[0].dval));}
-#line 1481 "y.tab.c"
+#line 1484 "y.tab.c"
     break;
 
   case 24:
-#line 62 "variable.y"
+#line 66 "variable.y"
                             {  if ((yyvsp[0].dval)==0.0) {
 					yyerror("argument zero");
 					return -1; }
 			       else
 			 	(yyval.dval) = log((yyvsp[0].dval));}
-#line 1491 "y.tab.c"
+#line 1494 "y.tab.c"
     break;
 
 
-#line 1495 "y.tab.c"
+#line 1498 "y.tab.c"
 
       default: break;
     }
@@ -1723,9 +1726,27 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 68 "variable.y"
+#line 72 "variable.y"
 
 int main()
 {
     yyparse();
+}
+
+struct symtab *symlook(char *s)
+{
+	struct symtab *sp;
+	for(sp=symtab; sp < &symtab[NSYMS]; sp++) {
+		/* is it already here ? */
+		if(sp->name && !strcmp(sp->name, s))
+			return sp;
+		/* is it free ? */
+		if(!sp->name) {
+			sp->name=strdup(s);
+			return sp;
+		}
+		/* otherwise continue to next */
+	}
+	fprintf(stderr, "%s","Too many symbols");
+	exit(1);
 }

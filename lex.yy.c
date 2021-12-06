@@ -322,6 +322,9 @@ void yyfree ( void *  );
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
 /* Begin user sect3 */
+
+#define yywrap() (/*CONSTCOND*/1)
+#define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -363,7 +366,7 @@ struct yy_trans_info
 static const flex_int16_t yy_accept[32] =
     {   0,
         0,    0,   16,   14,    2,   13,   14,    4,   10,   11,
-       12,   14,    1,   14,   14,   14,   14,    9,    2,    8,
+       12,   14,    1,   14,   14,   14,    3,    9,    2,    8,
         1,    0,    1,    6,    7,    5,    3,    0,    0,    1,
         0
     } ;
@@ -458,13 +461,15 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "variable.l"
 #line 3 "variable.l"
+#include "symbol.h"
 #include "y.tab.h"
 #include <math.h>
 #include <stdlib.h>
 extern double vbltable[26];
-#line 466 "lex.yy.c"
+extern struct symtab *symlook(char *);
+#line 471 "lex.yy.c"
 #define YY_NO_INPUT 1
-#line 468 "lex.yy.c"
+#line 473 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -679,9 +684,9 @@ YY_DECL
 		}
 
 	{
-#line 10 "variable.l"
+#line 13 "variable.l"
 
-#line 685 "lex.yy.c"
+#line 690 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -740,81 +745,81 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 11 "variable.l"
+#line 14 "variable.l"
 {
                   yylval.dval = atof(yytext); return NUMBER;
                 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "variable.l"
+#line 18 "variable.l"
 ;        /* ignore white space */
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "variable.l"
-{      yylval.vblno = yytext[0] - 'a'; return NAME; }
+#line 19 "variable.l"
+{      yylval.symp=symlook(yytext); return NAME; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 "variable.l"
+#line 20 "variable.l"
 { return 0; }    /*  end of input  */
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 18 "variable.l"
+#line 21 "variable.l"
 return GE;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 "variable.l"
+#line 22 "variable.l"
 return LE;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 20 "variable.l"
+#line 23 "variable.l"
 return EQ;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 21 "variable.l"
+#line 24 "variable.l"
 return NE;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 22 "variable.l"
+#line 25 "variable.l"
 return EXP;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 23 "variable.l"
+#line 26 "variable.l"
 return LOG;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 "variable.l"
+#line 27 "variable.l"
 return LEFT;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 "variable.l"
+#line 28 "variable.l"
 return RIGHT;
 	YY_BREAK
 case 13:
 /* rule 13 can match eol */
-#line 27 "variable.l"
+#line 30 "variable.l"
 case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
-#line 27 "variable.l"
+#line 30 "variable.l"
 return yytext[0];
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 28 "variable.l"
+#line 31 "variable.l"
 ECHO;
 	YY_BREAK
-#line 818 "lex.yy.c"
+#line 823 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1782,13 +1787,11 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 28 "variable.l"
+#line 31 "variable.l"
 
-
+/*
 int yywrap(void) {
 	return 1;
 }
-
-
-
+*/
 

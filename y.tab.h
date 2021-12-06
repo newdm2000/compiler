@@ -81,10 +81,10 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "variable.y"
+#line 13 "variable.y"
 
                 double dval;
-                int vblno;
+                struct symtab *symp;
         
 
 #line 91 "y.tab.h"
