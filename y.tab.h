@@ -57,10 +57,12 @@ extern int yydebug;
     LE = 263,
     EQ = 264,
     NE = 265,
-    EXP = 266,
-    LOG = 267,
-    UMINUS = 268,
-    UPLUS = 269
+    MOD = 266,
+    EXP = 267,
+    LOG = 268,
+    FAC = 269,
+    UMINUS = 270,
+    UPLUS = 271
   };
 #endif
 /* Tokens.  */
@@ -72,10 +74,12 @@ extern int yydebug;
 #define LE 263
 #define EQ 264
 #define NE 265
-#define EXP 266
-#define LOG 267
-#define UMINUS 268
-#define UPLUS 269
+#define MOD 266
+#define EXP 267
+#define LOG 268
+#define FAC 269
+#define UMINUS 270
+#define UPLUS 271
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -100,4 +104,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YYY_TAB_H_INCLUDED  */

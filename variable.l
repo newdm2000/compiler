@@ -6,6 +6,7 @@
 #include <stdlib.h>
 extern double vbltable[26];
 extern struct symtab *symlook(char *);
+//extern double factorial(double);
 %}
 %option nounput
 %option noinput
@@ -28,6 +29,8 @@ extern struct symtab *symlook(char *);
 "^"   return EXP;
 "&"   return LOG;
 
+"%"   return MOD;
+"!"   return FAC;
 "("   return LEFT;
 ")"   return RIGHT;
 

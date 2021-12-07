@@ -5,7 +5,7 @@ void yyerror(const char* msg) {
 }
 #include "symbol.h"
 #include <math.h>
-
+double factorial(double);
 int yylex();
 void yyerror(const char *s);
 //double vbltable[26];  /* double형의 기억장소 배열 */
@@ -22,7 +22,7 @@ void yyerror(const char *s);
 %left GE LE EQ NE  
 %left '-' '+'
 %left '*' '/'
-%left EXP LOG
+%left EXP LOG FAC MOD
 %nonassoc UMINUS UPLUS
 %type <dval> expression
 %%
@@ -64,6 +64,8 @@ expression: expression '+' expression  { $$ = $1 + $3;  }
 	   | expression LE  expression { $$ = $1 <= $3; }
 	   | expression NE  expression { $$ = $1 != $3; }
 	   | expression EQ  expression { $$ = $1 == $3; }
+	   | expression FAC { $$ = factorial($1); }
+	   | expression MOD expression { $$ = fmod($1, $3); } 
 	   | expression EXP expression { $$ = pow($1, $3);}		     
 	   | LOG expression {  if ($2==0.0) {
 					yyerror("argument zero");
@@ -94,3 +96,13 @@ struct symtab *symlook(char *s)
 	fprintf(stderr, "%s","Too many symbols");
 	exit(1);
 }
+
+double factorial(double tmp){
+	double re = 1;
+	while(tmp > 1) {
+		re = re * tmp;
+		tmp--;
+	}
+	return re;
+}
+
